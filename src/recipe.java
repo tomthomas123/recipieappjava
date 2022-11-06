@@ -114,6 +114,35 @@ public class recipe {
 
 
                     break;
+                case 4:
+                    System.out.println("Update a Recipe");
+                    System.out.println("Enter Recipe name: ");
+                    recipeTitle = input.next();
+
+                    System.out.println("Enter the Recipe Description to update: ");
+                    recipeDesc = input.next();
+
+                    System.out.println("Update Ingredients : ");
+                    recipeIngredients = input.next();
+                    System.out.println("Update author of recipe: ");
+                    recipePreparedBy = input.next();
+
+
+                    try {
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipiedb", "root", "");
+                        String sql = "UPDATE `reciepie` SET `reciepie_description`='"+recipeDesc+"',`reciepie_incredient`='"+recipeIngredients+"' WHERE `reciepie_name` ='"+recipeTitle+"'";
+                        Statement stmt = con.createStatement();
+                        stmt.executeUpdate(sql);
+                        System.out.println("Recipie updated successfully.");
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
+
+
+
+                    break;
 
             }
         }
