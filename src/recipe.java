@@ -50,6 +50,36 @@ public class recipe {
 
 
                     break;
+                case 2:
+                    System.out.println("View all Recipes");
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipiedb","root","");
+                        String sql ="SELECT `reciepie_name`, `reciepie_description`, `reciepie_incredient`, `recipie_author` FROM `reciepie` ";
+                        Statement stmt = con.createStatement();
+                        ResultSet rs = stmt.executeQuery(sql);
+                        while(rs.next()){
+                            String fetchRecipeName = rs.getString("reciepie_name");
+                            String fetchRecipeDesc = rs.getString("reciepie_description");
+                            //String fetchRecipePreparedBy = rs.getString("preparedby");
+                            String fetchRecipeIngredients = rs.getString("reciepie_incredient");
+                            String fetchRecipeCategory = rs.getString("recipie_author");
+
+                            System.out.println("Recipe Name: "+fetchRecipeName);
+                            System.out.println("Description : "+fetchRecipeDesc);
+                            //System.out.println("Prepared By : "+fetchRecipePreparedBy);
+                            System.out.println("Ingredients : "+fetchRecipeIngredients);
+                            System.out.println("Category : "+fetchRecipeCategory+"\n");
+
+
+                        }
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
+
+
+                    break;
 
             }
         }
