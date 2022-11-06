@@ -143,6 +143,30 @@ public class recipe {
 
 
                     break;
+                case 5:
+                    System.out.println("Delete a Recipe");
+                    System.out.println("Enter the Recipe name: ");
+                    recipeTitle = input.next();
+
+                    try {
+                        Class.forName("com.mysql.jdbc.Driver");
+                        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipiedb", "root", "");
+                        String sql = "DELETE FROM `reciepie` WHERE `reciepie_name` = '" +recipeTitle+"'";
+                        Statement stmt = con.createStatement();
+                        stmt.executeUpdate(sql);
+                        System.out.println("Recipe deleted successfully.");
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
+
+
+                    break;
+                case 6:
+                    System.out.println("Exited Menu..");
+                    System.exit(0);
+
+
 
             }
         }
